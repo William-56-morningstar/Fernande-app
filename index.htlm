@@ -9,7 +9,6 @@
     :root { --osec-blue: #0ea5e9; --dark: #0f172a; --bg: #f8fafc; }
     body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: #334155; padding-bottom: 50px; }
     
-    /* EN-TÊTE PROFESSIONNEL */
     .navbar { background: var(--dark); color: white; padding: 25px 15px; text-align: center; border-bottom: 5px solid var(--osec-blue); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .navbar h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 2px; color: var(--osec-blue); }
     .navbar p { margin: 8px 0 0; font-size: 12px; font-weight: 600; opacity: 0.9; text-transform: uppercase; }
@@ -28,6 +27,7 @@
 
     .btn-submit { width: 100%; padding: 20px; background: var(--osec-blue); color: white; border: none; border-radius: 15px; font-weight: 800; font-size: 18px; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3); margin-top: 20px; }
     .btn-submit:hover { background: #0284c7; transform: translateY(-3px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.4); }
+    .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
     .footer-info { text-align: center; font-size: 12px; margin-top: 20px; opacity: 0.6; }
 
@@ -43,85 +43,45 @@
   </div>
 
   <div class="container">
-    <form id="osecForm" onsubmit="event.preventDefault(); alert('Données enregistrées avec succès par l\'OSEC. Merci Marie Fernande !');">
+    <form id="osecForm">
       
       <section>
         <h2>1. Identification Générale</h2>
         <div class="grid">
-          <div class="field"><label>Nom</label><input type="text" placeholder="FOUDA ENAMA" required></div>
-          <div class="field"><label>Prénom</label><input type="text" placeholder="Marie Fernande" required></div>
+          <div class="field"><label>Nom</label><input type="text" name="nom" placeholder="NDONGO" required></div>
+          <div class="field"><label>Prénom</label><input type="text" name="prenom" placeholder="Jean" required></div>
         </div>
         <div class="grid">
-          <div class="field"><label>Sexe</label><select><option>Féminin</option><option>Masculin</option></select></div>
-          <div class="field"><label>Matricule</label><input type="text" placeholder="Ex: 22T2XXX" required></div>
+          <div class="field"><label>Sexe</label><select name="sexe"><option>Féminin</option><option>Masculin</option></select></div>
+          <div class="field"><label>Matricule</label><input type="text" name="matricule" placeholder="Ex: 22T2XXX" required></div>
         </div>
         <div class="grid">
-          <div class="field"><label>Date de Naissance</label><input type="date"></div>
-          <div class="field"><label>Statut Matrimonial</label><select><option>Célibataire</option><option>Marié(e)</option><option>En couple</option></select></div>
+          <div class="field"><label>Date de Naissance</label><input type="text" name="date_naissance" placeholder="JJ/MM/AAAA"></div>
+          <div class="field"><label>Nombre d'enfants</label><input type="text" name="nombre_enfants" value="0"></div>
         </div>
         <div class="grid">
-          <div class="field"><label>Nombre d'enfants</label><input type="number" value="0" min="0"></div>
-          <div class="field"><label>Niveau / Faculté</label><input type="text" placeholder="L2 Informatique / Faculté des Sciences"></div>
+          <div class="field"><label>Âge</label><input type="text" name="age" placeholder="Ex: 21"></div>
+          <div class="field"><label>Niveau / Faculté</label><input type="text" name="niveau" placeholder="L2 Informatique"></div>
         </div>
-        <div class="field"><label>Situation académique</label><select><option>Nouveau</option><option>Redoublant</option></select></div>
+        <div class="field"><label>Situation académique</label><input type="text" name="situation_academique" placeholder="Ex: Régulier"></div>
       </section>
 
       <section>
         <h2>2. Analyse du Logement & Localisation</h2>
-        <div class="field"><label>Quartier actuel</label><input type="text" placeholder="Ex: Ngoa-Ekelle, Yaoundé"></div>
-        <div class="field"><label>Adresse précise (Détails du logement)</label><textarea placeholder="Expliquez ici votre situation de logement..."></textarea></div>
-        <div class="field"><label>Type de cohabitation</label><select><option>Seul(e)</option><option>En famille</option><option>En colocation</option><option>Cité Universitaire</option></select></div>
+        <div class="field"><label>Quartier actuel</label><input type="text" name="quartier" placeholder="Ex: Ngoa-Ekelle"></div>
+        <div class="field"><label>Adresse précise</label><textarea name="adresse" placeholder="Détails du logement..."></textarea></div>
         <div class="grid">
-          <div class="field"><label>Distance Fac (km)</label><input type="number" step="0.1" placeholder="Ex: 3.5"></div>
-          <div class="field"><label>Moyen de transport habituel</label><input type="text" placeholder="Ex: Marche, Moto, Taxi"></div>
-        </div>
-        <div class="field"><label>Problèmes majeurs au domicile</label>
-            <select multiple style="height: 110px;">
-                <option>Pénurie d'eau fréquente</option>
-                <option>Insécurité du quartier</option>
-                <option>Insalubrité / Problème d'égouts</option>
-                <option>Nuisances sonores</option>
-                <option>Coupures d'électricité</option>
-            </select>
-            <small style="font-size: 10px;">(Maintenez Ctrl ou cliquez pour plusieurs options)</small>
+          <div class="field"><label>Distance Fac (km)</label><input type="text" name="distance_fac" placeholder="Ex: 3.5"></div>
+          <div class="field"><label>Faculté</label><input type="text" name="faculte" placeholder="Ex: FS"></div>
         </div>
       </section>
 
       <section>
         <h2>3. Situation Socio-Économique</h2>
-        <div class="grid">
-          <div class="field"><label>Êtes-vous boursier ?</label><select><option>Non</option><option>Oui</option></select></div>
-          <div class="field"><label>Source de revenus principale</label><select><option>Parents / Famille</option><option>Job étudiant</option><option>Aucune source</option></select></div>
-        </div>
-        <div class="field"><label>Si boursier : Type & Montant</label><input type="text" placeholder="Ex: Bourse d'excellence - 50 000 FCFA"></div>
-        <div class="field"><label>Dépenses mensuelles (Loyer, Transport, Vie)</label><input type="text" placeholder="Ex: 75 000 FCFA"></div>
-        <div class="field"><label>Difficultés à payer la scolarité ?</label><select><option>Non</option><option>Oui</option></select></div>
+        <div class="field"><label>Type et Montant Bourse / Revenus</label><input type="text" name="montant_loyer" placeholder="Ex: Bourse 50 000 FCFA"></div>
       </section>
 
-      <section>
-        <h2>4. Accès au Numérique</h2>
-        <div class="grid">
-          <div class="field"><label>Possède un ordinateur ?</label><select><option>Oui</option><option>Non</option></select></div>
-          <div class="field"><label>Possède un Smartphone ?</label><select><option>Oui</option><option>Non</option></select></div>
-        </div>
-        <div class="field"><label>Accès Internet stable à domicile ?</label><select><option>Non</option><option>Oui</option></select></div>
-        <div class="field"><label>Lieu d'étude principal</label><select><option>Chambre</option><option>Bibliothèque Universitaire</option><option>Amphithéâtre</option></select></div>
-      </section>
-
-      <section>
-        <h2>5. Santé, Nutrition & Bien-être</h2>
-        <div class="grid">
-          <div class="field"><label>Souvent malade ?</label><select><option>Non</option><option>Oui</option></select></div>
-          <div class="field"><label>Mange au Resto U ?</label><select><option>Oui</option><option>Non</option></select></div>
-        </div>
-        <div class="grid">
-          <div class="field"><label>Assurance maladie ?</label><select><option>Non</option><option>Oui</option></select></div>
-          <div class="field"><label>Niveau de stress (Études)</label><select><option>Faible</option><option>Moyen</option><option>Élevé</option></select></div>
-        </div>
-        <div class="field"><label>Besoin d'accompagnement psychologique ?</label><select><option>Non</option><option>Oui</option></select></div>
-      </section>
-
-      <button type="submit" class="btn-submit">SOUMETTRE À L'OSEC</button>
+      <button type="submit" id="btnSubmit" class="btn-submit">SOUMETTRE À L'OSEC</button>
       
       <div class="footer-info">
         Service d'observation académique dirigé par Mlle FOUDA ENAMA Marie Fernande
@@ -130,6 +90,38 @@
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = 'https://nhiozzoselpdunbfgnuv.supabase.co'; 
+    const supabaseKey = 'sb_publishable_51xUD1pAgERouisvcTs6dA_0dD9FEc-';
+    const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById('osecForm');
+    const btn = document.getElementById('btnSubmit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.innerText = "ENVOI EN COURS...";
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+      const donnees = Object.fromEntries(formData.entries());
+
+      const { data, error } = await _supabase
+        .from('recensement')
+        .insert([donnees]);
+
+      if (error) {
+        alert("Erreur : " + error.message);
+        btn.innerText = "RÉESSAYER";
+        btn.disabled = false;
+      } else {
+        alert("Données enregistrées avec succès par l'OSEC. Merci !");
+        form.reset();
+        btn.innerText = "SOUMETTRE À L'OSEC";
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
-  
